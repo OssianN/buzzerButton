@@ -1,0 +1,19 @@
+{
+  "name": "buzzer-button",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "next dev",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "12.0.9",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "eslint": "8.8.0",
+    "eslint-config-next": "12.0.9"
+  }
+}
