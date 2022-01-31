@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CreateRoomForm = ({ socket, setError }) => {
+const CreateRoomForm = ({ router }) => {
   const [create, setCreate] = useState({ room: "", name: "Host" });
 
   const handleChangeCreate = (e) => {
@@ -13,8 +13,9 @@ const CreateRoomForm = ({ socket, setError }) => {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    socket.emit("create", create, (error) => {
-      setError(error);
+    router.push({
+      pathname: "/room",
+      query: { ...create, host: true },
     });
   };
 

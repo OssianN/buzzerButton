@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const JoinRoomForm = ({ socket, setError }) => {
+const JoinRoomForm = ({ router }) => {
   const [join, setJoin] = useState({ room: "", name: "" });
 
   const handleChangeJoin = (e) => {
@@ -13,10 +13,9 @@ const JoinRoomForm = ({ socket, setError }) => {
 
   const handleJoin = (e) => {
     e.preventDefault();
-    socket.emit("join", join, (error) => {
-      if (error) {
-        setError(error);
-      }
+    router.push({
+      pathname: "/room",
+      query: join,
     });
   };
 

@@ -1,37 +1,18 @@
 import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Join from "../components/joinRoomForm";
 import Create from "../components/createRoomForm";
 import styles from "../styles/Home.module.css";
-import Room from "../components/room";
-const socket = io("https://buzzer-button.herokuapp.com");
 
 const Home = () => {
   const [error, setError] = useState("");
-  const [user, setUser] = useState(null);
-  const [usersList, setUsersList] = useState([]);
+  const router = useRouter();
 
-  useEffect(() => {
-    socket.on("user joined", (user) => {
-      setUser(user);
-      setUsersList([...usersList, user]);
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on("message", ({ msg }) => {
-      console.log(msg);
-    });
-
-    socket.on("buzzed", (name) => {
-      console.log(name, "buzzed");
-    });
-  });
-
-  const handleClick = () => {
-    socket.emit("buzz", user);
-  };
+  // useEffect(() => {
+  //   setUser(user);
+  //   setUsersList([...usersList, user]);
+  // }, []);
 
   return (
     <div className={styles.container}>
@@ -41,22 +22,9 @@ const Home = () => {
       </Head>
 
       <main className={styles.main}>
-        {user ? (
-          <>
-            <Room
-              socket={socket}
-              user={user}
-              usersList={usersList}
-              handleClick={handleClick}
-            />
-          </>
-        ) : (
-          <>
-            <p>{error}</p>
-            <Join socket={socket} setError={setError} />
-            <Create socket={socket} setError={setError} />
-          </>
-        )}
+        <p>{error}</p>
+        <Join router={router} />
+        <Create router={router} />
       </main>
     </div>
   );
