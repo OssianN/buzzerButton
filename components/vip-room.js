@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
 
-const Room = ({ usersList }) => {
+const Vip = ({ usersList }) => {
   return (
     <div className={styles.main}>
       <ul>
@@ -13,4 +13,4 @@ const Room = ({ usersList }) => {
   );
 };
 
-export default Room;
+export default Vip;

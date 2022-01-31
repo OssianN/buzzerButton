@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const joinRoomForm = ({ socket, setError }) => {
+const JoinRoomForm = ({ socket, setError }) => {
   const [join, setJoin] = useState({ room: "", name: "" });
 
   const handleChangeJoin = (e) => {
@@ -29,4 +29,4 @@ const joinRoomForm = ({ socket, setError }) => {
   );
 };
 
-export default joinRoomForm;
+export default JoinRoomForm;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const createRoomForm = ({ socket, setError }) => {
+const CreateRoomForm = ({ socket, setError }) => {
   const [create, setCreate] = useState({ room: "", name: "Host" });
 
   const handleChangeCreate = (e) => {
@@ -26,4 +26,4 @@ const createRoomForm = ({ socket, setError }) => {
   );
 };
 
-export default createRoomForm;
+export default CreateRoomForm;
