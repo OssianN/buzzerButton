@@ -5,7 +5,7 @@ import Join from "../components/joinRoomForm";
 import Create from "../components/createRoomForm";
 import styles from "../styles/Home.module.css";
 import Room from "../components/room";
-const socket = io("http://localhost:4000");
+const socket = io("https://buzzer-button.herokuapp.com");
 
 const Home = () => {
   const [error, setError] = useState("");
