@@ -1,16 +1,18 @@
 {
   "name": "buzzer-button",
   "private": true,
-  "scripts": {
-    "build": "next build",
-    "start": "next dev",
-    "lint": "next lint"
-  },
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "next": "12.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "socket.io": "^4.4.1"
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1"
+  },
+  "scripts": {
+    "build": "next build",
+    "start": "next dev",
+    "lint": "next lint"
   },
   "devDependencies": {
     "eslint": "8.8.0",
