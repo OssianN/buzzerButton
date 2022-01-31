@@ -8,7 +8,7 @@ const Room = () => {
   const [user, setUser] = useState(null);
   const [usersList, setUsersList] = useState([]);
   const router = useRouter();
-  const socket = io("http://localhost:4000");
+  const socket = io("https://buzzer-button.herokuapp.com"); //http://localhost:4000
 
   useEffect(() => {
     socket.on("host list", (list) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Join from "../components/joinRoomForm";
@@ -8,11 +8,6 @@ import styles from "../styles/Home.module.css";
 const Home = () => {
   const [error, setError] = useState("");
   const router = useRouter();
-
-  // useEffect(() => {
-  //   setUser(user);
-  //   setUsersList([...usersList, user]);
-  // }, []);
 
   return (
     <div className={styles.container}>
