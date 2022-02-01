@@ -4,20 +4,19 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Join from "../components/JoinForm";
 import Create from "../components/CreateForm";
-import styles from "../styles/Home.module.css";
 
 const Home = () => {
   const router = useRouter();
   const { isError } = useSelector((state) => state.userSlice);
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>BuzzerButton</title>
         <meta name="" content="" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <p>{isError}</p>
         <Join router={router} />
         <Create router={router} />

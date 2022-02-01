@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import VipRoom from "../components/VipRoom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,12 +10,12 @@ import {
 } from "../redux/userSlice";
 import { useRouter } from "next/router";
 import io from "socket.io-client";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/room.module.scss";
 
 const Room = () => {
   const router = useRouter();
-  // const socket = io("https://buzzer-button.herokuapp.com");
-  const socket = io("http://localhost:4000");
+  const socket = io("https://buzzer-button.herokuapp.com");
+  // const socket = io("http://localhost:4000");
   const dispatch = useDispatch();
 
   const { user, isError } = useSelector((state) => state.userSlice);
@@ -78,10 +78,20 @@ const Room = () => {
   return user?.host ? (
     <VipRoom handleResetBuzz={handleResetBuzz} />
   ) : (
-    <div className={styles.main}>
-      <button onClick={handleClick}>click</button>
-      <p>{user?.name}</p>
-      <p>{user?.buzzed}</p>
+    <div className={styles.roomContainer}>
+      <h2
+        className={`${styles.userName} ${user?.buzzed ? styles.buzzed : null}`}
+      >
+        {user?.name}
+      </h2>
+      <button
+        className={`${
+          user?.buzzed ? styles.buzzButtonBuzzed : styles.buzzButton
+        }`}
+        onClick={handleClick}
+      >
+        BUZZ
+      </button>
     </div>
   );
 };

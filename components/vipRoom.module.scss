@@ -1,0 +1,83 @@
+@use "../styles/globals.scss" as g;
+
+@mixin user-list-desktop-size() {
+  max-height: 90vh;
+  max-width: 500px;
+  width: 45%;
+  height: 100%;
+}
+
+@mixin user-list-mobile-size() {
+  width: 90%;
+  height: 45%;
+}
+
+@mixin user-list($light, $background) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1rem;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px #00000015;
+  background: linear-gradient(135deg, $light, $background);
+  color: white;
+  text-shadow: #00000025 1px 1px 10px;
+  border: 3px solid white;
+}
+
+.hostContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.buzzedList {
+  @include user-list-mobile-size();
+  @include user-list(g.$lightBlue, g.$blue);
+}
+
+.notBuzzedList {
+  @include user-list-mobile-size();
+  @include user-list(g.$lightOrange, g.$orange);
+}
+
+.usersListItem {
+  display: flex;
+  align-items: center;
+}
+
+.resetButton {
+  position: absolute;
+  bottom: 30px;
+  padding: 0.5rem 2rem;
+  width: 10rem;
+  border-radius: 10px;
+  border: 3px solid white;
+  background: g.$green;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .buzzedList {
+    @include user-list-desktop-size();
+  }
+
+  .notBuzzedList {
+    @include user-list-desktop-size();
+  }
+
+  .hostContainer {
+    flex-direction: row;
+  }
+}
