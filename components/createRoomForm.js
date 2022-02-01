@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setError } from "../redux/userSlice";
 
 const CreateRoomForm = ({ router }) => {
   const [create, setCreate] = useState({ room: "", name: "Host" });
+  const dispatch = useDispatch();
 
   const handleChangeCreate = (e) => {
     const { name } = e.target;
@@ -9,6 +12,7 @@ const CreateRoomForm = ({ router }) => {
       ...create,
       [name]: e.target.value,
     });
+    dispatch(setError(false));
   };
 
   const handleCreate = (e) => {

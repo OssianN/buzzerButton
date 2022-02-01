@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Join from "../components/joinRoomForm";
-import Create from "../components/createRoomForm";
+import Join from "../components/JoinRoomForm";
+import Create from "../components/CreateRoomForm";
 import styles from "../styles/Home.module.css";
 
 const Home = () => {
-  const [error, setError] = useState("");
   const router = useRouter();
+  const { isError } = useSelector((state) => state.userSlice);
 
   return (
     <div className={styles.container}>
@@ -17,7 +18,7 @@ const Home = () => {
       </Head>
 
       <main className={styles.main}>
-        <p>{error}</p>
+        <p>{isError}</p>
         <Join router={router} />
         <Create router={router} />
       </main>
