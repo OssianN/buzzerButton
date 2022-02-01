@@ -1,0 +1,18 @@
+.host__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.users__ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 30%;
+}
+
+.users__li {
+  display: flex;
+  align-items: center;
+}
