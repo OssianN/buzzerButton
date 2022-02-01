@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from "react";
 import VipRoom from "../components/VipRoom";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser, setUsersList, setError, setBuzzed } from "../redux/userSlice";
+import {
+  setUser,
+  setUsersList,
+  setError,
+  setBuzzed,
+  resetBuzz,
+} from "../redux/userSlice";
 import { useRouter } from "next/router";
 import io from "socket.io-client";
 import styles from "../styles/Home.module.css";
 
 const Room = () => {
   const router = useRouter();
-  const socket = io("https://buzzer-button.herokuapp.com"); //http://localhost:4000
+  // const socket = io("https://buzzer-button.herokuapp.com");
+  const socket = io("http://localhost:4000");
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError } = useSelector((state) => state.userSlice);
+  const { user, isError } = useSelector((state) => state.userSlice);
 
   useEffect(() => {
     socket.on("host list", (list) => {
       dispatch(setUsersList(list));
     });
-  });
 
-  useEffect(() => {
-    socket.on("buzzed", (id) => {
-      dispatch(setBuzzed(id));
+    socket.on("buzzed", (id, time) => {
+      dispatch(setBuzzed({ id, time }));
+    });
+
+    socket.on("buzz has reset", () => {
+      dispatch(resetBuzz());
     });
   });
 
@@ -52,7 +61,13 @@ const Room = () => {
   }, []);
 
   const handleClick = () => {
-    socket.emit("buzz", user);
+    socket.emit("buzz", user, Date.now(), (time) => {
+      dispatch(setUser({ ...user, buzzed: time }));
+    });
+  };
+
+  const handleResetBuzz = () => {
+    socket.emit("reset buzz", user.room);
   };
 
   if (isError) {
@@ -61,7 +76,7 @@ const Room = () => {
   }
 
   return user?.host ? (
-    <VipRoom />
+    <VipRoom handleResetBuzz={handleResetBuzz} />
   ) : (
     <div className={styles.main}>
       <button onClick={handleClick}>click</button>
