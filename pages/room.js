@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Vip from "../components/vip-room";
+import VipRoom from "../components/VipRoom";
 import { useDispatch, useSelector } from "react-redux";
+import { setUser, setUsersList, setError, setBuzzed } from "../redux/userSlice";
 import { useRouter } from "next/router";
 import io from "socket.io-client";
-import { setUser, setUsersList, setError, setBuzzed } from "../redux/userSlice";
 import styles from "../styles/Home.module.css";
 
 const Room = () => {
@@ -61,7 +61,7 @@ const Room = () => {
   }
 
   return user?.host ? (
-    <Vip />
+    <VipRoom />
   ) : (
     <div className={styles.main}>
       <button onClick={handleClick}>click</button>

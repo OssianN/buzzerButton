@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Join from "../components/JoinRoomForm";
-import Create from "../components/CreateRoomForm";
+import Join from "../components/JoinForm";
+import Create from "../components/CreateForm";
 import styles from "../styles/Home.module.css";
 
 const Home = () => {
