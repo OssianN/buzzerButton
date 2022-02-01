@@ -8,7 +8,7 @@ import styles from "../styles/Home.module.css";
 
 const Room = () => {
   const router = useRouter();
-  const socket = io("http://localhost:4000"); //https://buzzer-button.herokuapp.com
+  const socket = io("https://buzzer-button.herokuapp.com"); //http://localhost:4000
   const dispatch = useDispatch();
 
   const { user, isLoading, isError } = useSelector((state) => state.userSlice);

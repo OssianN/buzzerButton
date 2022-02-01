@@ -15,11 +15,9 @@ const userSlice = createSlice({
       state.user = action.payload;
     },
     setBuzzed(state, action) {
-      console.log(state.usersList);
       const newList = state.usersList.map((user) =>
         user.id === action.payload ? { ...user, buzzed: true } : user
       );
-      console.log(newList);
       state.usersList = newList;
     },
     setUsersList(state, action) {
