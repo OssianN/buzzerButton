@@ -1,8 +1,8 @@
 @use "./globals" as g;
 
 @mixin buzz-button {
-  width: 40vmax;
-  height: 40vmax;
+  width: 40vh;
+  height: 40vh;
   padding: 2rem;
   border-radius: 50%;
   border: 3px solid white;
@@ -12,6 +12,7 @@
   color: white;
   transition: 0.3s;
   box-shadow: 0 10px 10px #00000025;
+  cursor: pointer;
 }
 
 .roomContainer {
@@ -42,10 +43,21 @@
   }
 }
 
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingMessage {
+  font-size: 5rem;
+}
+
 .buzzButtonBuzzed {
   @include buzz-button;
   pointer-events: none;
   background: g.$green;
-  color: rgb(150, 150, 150);
   box-shadow: none;
 }

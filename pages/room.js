@@ -4,21 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setUser,
   setUsersList,
+  setLoadingTrue,
+  setLoadingFalse,
   setError,
   setBuzzed,
   resetBuzz,
 } from "../redux/userSlice";
 import { useRouter } from "next/router";
+import { colorMainHeading } from "../utils";
 import io from "socket.io-client";
 import styles from "../styles/room.module.scss";
 
 const Room = () => {
   const router = useRouter();
-  const socket = io("https://buzzer-button.herokuapp.com");
-  // const socket = io("http://localhost:4000");
+  // const socket = io("https://buzzer-button.herokuapp.com");
+  const socket = io("http://localhost:4000");
   const dispatch = useDispatch();
 
-  const { user, isError } = useSelector((state) => state.userSlice);
+  const { user, isLoading, isError } = useSelector((state) => state.userSlice);
 
   useEffect(() => {
     socket.on("host list", (list) => {
@@ -36,6 +39,7 @@ const Room = () => {
 
   useEffect(() => {
     const { name, room, host } = router.query;
+    dispatch(setLoadingTrue());
 
     if (host) {
       socket.emit("create", { room }, (error) => {
@@ -43,6 +47,9 @@ const Room = () => {
           return dispatch(setError(error));
         }
         dispatch(setUser({ name, room, host }));
+        setTimeout(() => {
+          dispatch(setLoadingFalse());
+        }, 500);
       });
       return;
     }
@@ -52,6 +59,9 @@ const Room = () => {
         return dispatch(setError(error));
       }
       dispatch(setUser(user));
+      setTimeout(() => {
+        dispatch(setLoadingFalse());
+      }, 500);
     });
 
     return () => {
@@ -75,22 +85,30 @@ const Room = () => {
     return <></>;
   }
 
-  return user?.host ? (
+  if (isLoading || !user) {
+    return (
+      <div className={styles.loadingContainer}>
+        <h2 className={styles.loadingMessage}>{colorMainHeading("LOADING")}</h2>
+      </div>
+    );
+  }
+
+  return user.host ? (
     <VipRoom handleResetBuzz={handleResetBuzz} />
   ) : (
     <div className={styles.roomContainer}>
       <h2
-        className={`${styles.userName} ${user?.buzzed ? styles.buzzed : null}`}
+        className={`${styles.userName} ${user.buzzed ? styles.buzzed : null}`}
       >
-        {user?.name}
+        {user.name}
       </h2>
       <button
         className={`${
-          user?.buzzed ? styles.buzzButtonBuzzed : styles.buzzButton
+          user.buzzed ? styles.buzzButtonBuzzed : styles.buzzButton
         }`}
         onClick={handleClick}
       >
-        BUZZ
+        {user.buzzed ? "BUZZED" : "BUZZ"}
       </button>
     </div>
   );

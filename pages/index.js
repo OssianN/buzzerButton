@@ -1,27 +1,48 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Join from "../components/JoinForm";
 import Create from "../components/CreateForm";
+import { colorMainHeading } from "../utils";
+import styles from "../styles/landingPage.module.scss";
 
 const Home = () => {
   const router = useRouter();
-  const { isError } = useSelector((state) => state.userSlice);
+
+  const handleInputFocus = (labelRef) => {
+    labelRef.current.style.transform = "translateY(-10px)";
+    labelRef.current.style.color = "white";
+  };
+
+  const handleInputBlur = (labelRef) => {
+    if (!window) return;
+
+    const translateAmout = window.innerHeight > 900 ? "2.3rem" : "1.6rem";
+    labelRef.current.style.transform = `translateY(${translateAmout})`;
+    labelRef.current.style.color = "#c7c7c7";
+  };
 
   return (
-    <div>
+    <>
       <Head>
         <title>BuzzerButton</title>
-        <meta name="" content="" />
+        <meta name="Buzz" content="" />
       </Head>
 
-      <main>
-        <p>{isError}</p>
-        <Join router={router} />
-        <Create router={router} />
+      <main className={styles.landingContainer}>
+        <h1 className={styles.mainHeading}>{colorMainHeading("BUZZER")}</h1>
+        <Join
+          router={router}
+          handleInputFocus={handleInputFocus}
+          handleInputBlur={handleInputBlur}
+        />
+        <Create
+          router={router}
+          handleInputFocus={handleInputFocus}
+          handleInputBlur={handleInputBlur}
+        />
       </main>
-    </div>
+    </>
   );
 };
 

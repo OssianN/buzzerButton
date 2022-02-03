@@ -14,11 +14,10 @@ const Vip = ({ handleResetBuzz }) => {
           .sort((a, b) => a.buzzed - b.buzzed)
           .map((user, i) => {
             return (
-              <li className={styles.users__li} key={i}>
-                <h2>
-                  {`${i + 1}. `}
-                  {user.name}
-                </h2>
+              <li className={styles.usersListItem} key={i}>
+                <span className={styles.userOrder}>{`${i + 1}. `}</span>
+                <h2 className={styles.userName}>{user.name}</h2>
+                <span></span>
               </li>
             );
           })}
@@ -30,8 +29,10 @@ const Vip = ({ handleResetBuzz }) => {
       <ul className={styles.notBuzzedList}>
         {notBuzzed.map((user, i) => {
           return (
-            <li className={styles.users__li} key={i}>
-              <h2>{user.name}</h2>
+            <li className={styles.usersListItem} key={i}>
+              <span></span>
+              <h2 className={styles.userName}>{user.name}</h2>
+              <span></span>
             </li>
           );
         })}

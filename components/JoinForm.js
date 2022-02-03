@@ -1,10 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setError } from "../redux/userSlice";
+import styles from "../styles/landingPage.module.scss";
 
-const JoinRoomForm = ({ router }) => {
+const JoinRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
   const [join, setJoin] = useState({ room: "", name: "" });
+  const { isError } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
+
+  const roomLabel = useRef(null);
+  const nameLabel = useRef(null);
+  console.log(isError);
+  const errorMessage = isError && isError.includes("name") ? isError : null;
 
   const handleChangeJoin = (e) => {
     const { name } = e.target;
@@ -24,10 +31,38 @@ const JoinRoomForm = ({ router }) => {
   };
 
   return (
-    <form onSubmit={handleJoin}>
-      <input name="room" onChange={handleChangeJoin} value={join.room} />
-      <input name="name" onChange={handleChangeJoin} value={join.name} />
-      <button type="submit">Join</button>
+    <form className={styles.joinRoomForm} onSubmit={handleJoin}>
+      <h2 className={styles.formHeading}>Join Room</h2>
+      <label className={styles.formLabel} htmlFor="room" ref={roomLabel}>
+        enter room name
+      </label>
+      <input
+        className={styles.formInput}
+        name="room"
+        id="room"
+        onFocus={() => handleInputFocus(roomLabel)}
+        onBlur={() => handleInputBlur(roomLabel)}
+        onChange={handleChangeJoin}
+        value={join.room}
+      />
+      <label className={styles.formLabel} htmlFor="name" ref={nameLabel}>
+        enter a username
+      </label>
+      <input
+        className={styles.formInput}
+        name="name"
+        id="name"
+        onFocus={() => handleInputFocus(nameLabel)}
+        onBlur={() => handleInputBlur(nameLabel)}
+        onChange={handleChangeJoin}
+        value={join.name}
+      />
+      {errorMessage ? (
+        <p className={styles.errorMessage}>{errorMessage}</p>
+      ) : null}
+      <button className={styles.formButtonJoin} type="submit">
+        Join
+      </button>
     </form>
   );
 };

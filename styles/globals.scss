@@ -1,1 +1,22 @@
+@use "./variables.scss" as *;
 @forward "./variables.scss";
+
+@mixin default-button($background, $color) {
+  position: absolute;
+  bottom: 1.5rem;
+  padding: 0.5rem 2rem;
+  width: 10rem;
+  border-radius: $defaultBorderRadius;
+  border: 3px solid $color;
+  background: $background;
+  color: white;
+  box-shadow: $defaultBoxShadow;
+  font-weight: 600;
+  font-size: 1.3rem;
+  cursor: pointer;
+  text-shadow: #00000045 0 1px 3px;
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
+}

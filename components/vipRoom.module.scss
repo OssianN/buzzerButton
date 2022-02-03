@@ -19,8 +19,8 @@
   align-items: center;
   margin: 0 1rem;
   padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px #00000015;
+  border-radius: g.$defaultBorderRadius;
+  box-shadow: g.$defaultBoxShadow;
   background: linear-gradient(135deg, $light, $background);
   color: white;
   text-shadow: #00000025 1px 1px 10px;
@@ -48,24 +48,22 @@
 .usersListItem {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+}
+
+.userName {
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+.userOrder {
+  font-size: 3rem;
 }
 
 .resetButton {
+  @include g.default-button(g.$green, white);
   position: absolute;
   bottom: 30px;
-  padding: 0.5rem 2rem;
-  width: 10rem;
-  border-radius: 10px;
-  border: 3px solid white;
-  background: g.$green;
-  color: white;
-  font-weight: 600;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: transform 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
 }
 
 @media screen and (min-width: 600px) {
