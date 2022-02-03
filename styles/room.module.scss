@@ -5,7 +5,7 @@
   height: 40vh;
   padding: 2rem;
   border-radius: 50%;
-  border: 3px solid white;
+  border: 8px solid white;
   background: linear-gradient(g.$lightBlue, g.$blue);
   font-weight: 600;
   font-size: 2rem;
@@ -24,15 +24,20 @@
   align-items: center;
 }
 
-.userName {
+.roomHeading {
   font-size: 5rem;
   font-weight: 900;
-  margin-bottom: 5rem;
   color: g.$lightBlue;
+  margin-bottom: 1rem;
 }
 
 .buzzed {
   color: g.$green;
+}
+
+.userName {
+  color: g.$orange;
+  margin-bottom: 5rem;
 }
 
 .buzzButton {

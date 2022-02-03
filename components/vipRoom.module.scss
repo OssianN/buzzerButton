@@ -28,6 +28,19 @@
 }
 
 .hostContainer {
+  width: 100%;
+  height: calc(100% - 10rem);
+}
+
+.roomHeading {
+  font-size: 5rem;
+  font-weight: 900;
+  color: g.$lightBlue;
+  margin: 1rem;
+  text-align: center;
+}
+
+.listContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,12 +65,17 @@
 }
 
 .userName {
-  font-size: 3rem;
+  font-size: 1.7rem;
   margin: 1rem;
 }
 
 .userOrder {
-  font-size: 3rem;
+  font-size: 1.7rem;
+}
+
+.waitingText {
+  color: white;
+  margin: auto;
 }
 
 .resetButton {
@@ -75,7 +93,15 @@
     @include user-list-desktop-size();
   }
 
-  .hostContainer {
+  .listContainer {
     flex-direction: row;
+  }
+
+  .userName {
+    font-size: 3rem;
+  }
+
+  .userOrder {
+    font-size: 3rem;
   }
 }

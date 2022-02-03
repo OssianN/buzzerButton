@@ -18,7 +18,6 @@ import styles from "../styles/room.module.scss";
 const Room = () => {
   const router = useRouter();
   const socket = io("https://buzzer-button.herokuapp.com");
-  // const socket = io("http://localhost:4000");
   const dispatch = useDispatch();
 
   const { user, isLoading, isError } = useSelector((state) => state.userSlice);
@@ -98,10 +97,13 @@ const Room = () => {
   ) : (
     <div className={styles.roomContainer}>
       <h2
-        className={`${styles.userName} ${user.buzzed ? styles.buzzed : null}`}
+        className={`${styles.roomHeading} ${
+          user.buzzed ? styles.buzzed : null
+        }`}
       >
-        {user.name}
+        {user.room}
       </h2>
+      <h3 className={styles.userName}>{user.name}</h3>
       <button
         className={`${
           user.buzzed ? styles.buzzButtonBuzzed : styles.buzzButton
