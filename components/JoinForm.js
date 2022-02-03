@@ -10,7 +10,6 @@ const JoinRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
 
   const roomLabel = useRef(null);
   const nameLabel = useRef(null);
-  console.log(isError);
   const errorMessage = isError && isError.includes("name") ? isError : null;
 
   const handleChangeJoin = (e) => {
