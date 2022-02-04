@@ -20,7 +20,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -28,16 +27,25 @@
   font-size: 5rem;
   font-weight: 900;
   color: g.$lightBlue;
-  margin-bottom: 1rem;
+  margin-top: 3rem;
 }
 
 .buzzed {
   color: g.$green;
 }
 
+.lineSpan {
+  height: 2px;
+  width: 70%;
+  background: g.$lightBlue;
+  margin: 2rem 0;
+}
+
 .userName {
-  color: g.$orange;
+  color: g.$lightOrange;
   margin-bottom: 5rem;
+  font-weight: 400;
+  font-size: 1.3rem;
 }
 
 .buzzButton {
@@ -66,4 +74,10 @@
   pointer-events: none;
   background: g.$green;
   box-shadow: none;
+}
+
+@media screen and (min-height: 900px) {
+  .roomHeading {
+    margin-top: 7rem;
+  }
 }

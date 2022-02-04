@@ -3,8 +3,8 @@
 
 @mixin default-button($background, $color) {
   position: absolute;
-  bottom: 1.5rem;
-  padding: 0.5rem 2rem;
+  bottom: 2rem;
+  padding: 0.3rem 2rem;
   width: 10rem;
   border-radius: $defaultBorderRadius;
   border: 3px solid $color;
@@ -12,7 +12,7 @@
   color: white;
   box-shadow: $defaultBoxShadow;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: pointer;
   text-shadow: #00000045 0 1px 3px;
   transition: transform 0.3s;

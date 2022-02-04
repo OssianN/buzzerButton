@@ -1,9 +1,9 @@
 export const colorMainHeading = (word) => {
   const colors = {
-    ["0"]: "#f3ff0b",
-    ["1"]: "#ffbb16",
-    ["2"]: "#1be7ff",
-    ["3"]: "#5dff6b",
+    0: "#f3ff0b",
+    1: "#ffbb16",
+    2: "#1be7ff",
+    3: "#5dff6b",
   };
 
   return word.split("").map((char, i) => {

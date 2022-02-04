@@ -96,14 +96,11 @@ const Room = () => {
     <VipRoom handleResetBuzz={handleResetBuzz} />
   ) : (
     <div className={styles.roomContainer}>
-      <h2
-        className={`${styles.roomHeading} ${
+      <h2 className={styles.roomHeading}>{user.room}</h2>
+      <span className={styles.lineSpan}></span>
+      <h3 className={`${styles.userName} ${
           user.buzzed ? styles.buzzed : null
-        }`}
-      >
-        {user.room}
-      </h2>
-      <h3 className={styles.userName}>{user.name}</h3>
+        }`}>{user.name}</h3>
       <button
         className={`${
           user.buzzed ? styles.buzzButtonBuzzed : styles.buzzButton
