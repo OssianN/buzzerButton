@@ -50,10 +50,6 @@
 
 .buzzButton {
   @include buzz-button;
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 30px #00000025;
-  }
 }
 
 .loadingContainer {
@@ -79,5 +75,14 @@
 @media screen and (min-height: 900px) {
   .roomHeading {
     margin-top: 7rem;
+  }
+}
+
+@media (hover: hover) {
+  .buzzButton {
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px #00000025;
+    }
   }
 }

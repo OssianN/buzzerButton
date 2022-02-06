@@ -60,8 +60,9 @@
 
 .usersListItem {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .userName {
@@ -70,7 +71,7 @@
 }
 
 .userOrder {
-  font-size: 1.7rem;
+  font-size: 1rem;
 }
 
 .waitingText {
@@ -102,6 +103,6 @@
   }
 
   .userOrder {
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
 }

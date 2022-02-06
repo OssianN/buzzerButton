@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Join from "../components/JoinForm";
 import Create from "../components/CreateForm";
-import { colorMainHeading } from "../utils";
+import { colorText } from "../utils";
 import styles from "../styles/landingPage.module.scss";
 
 const Home = () => {
@@ -30,7 +30,7 @@ const Home = () => {
       </Head>
 
       <main className={styles.landingContainer}>
-        <h1 className={styles.mainHeading}>{colorMainHeading("BUZZER")}</h1>
+        <h1 className={styles.mainHeading}>{colorText("BUZZER")}</h1>
         <Join
           router={router}
           handleInputFocus={handleInputFocus}

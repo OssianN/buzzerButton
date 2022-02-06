@@ -20,13 +20,16 @@ const userSlice = createSlice({
         user.id === id ? { ...user, buzzed: time } : user
       );
       state.usersList = newList;
+      localStorage.setItem("usersList", JSON.stringify(state.usersList));
     },
     resetBuzz(state) {
       state.user.buzzed = null;
       state.usersList.forEach((user) => (user.buzzed = null));
+      localStorage.setItem("usersList", JSON.stringify(state.usersList));
     },
     setUsersList(state, action) {
       state.usersList = action.payload;
+      localStorage.setItem("usersList", JSON.stringify(state.usersList));
     },
     setLoadingTrue(state) {
       state.isLoading = true;

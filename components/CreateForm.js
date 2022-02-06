@@ -9,7 +9,8 @@ const CreateRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
   const dispatch = useDispatch();
 
   const roomLabel = useRef(null);
-  const errorMessage = isError && isError.includes("room") ? isError : null;
+  const errorMessage =
+    isError && isError.includes("room taken") ? isError : null;
 
   const handleChangeCreate = (e) => {
     const { name } = e.target;
@@ -22,10 +23,8 @@ const CreateRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    router.push({
-      pathname: "/room",
-      query: { ...create, host: true },
-    });
+    localStorage.setItem("user", JSON.stringify({ ...create, host: true }));
+    router.push("/room");
   };
 
   return (

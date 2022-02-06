@@ -10,7 +10,11 @@ const JoinRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
 
   const roomLabel = useRef(null);
   const nameLabel = useRef(null);
-  const errorMessage = isError && isError.includes("name") ? isError : null;
+  const errorMessage =
+    isError &&
+    (isError.includes("name taken") || isError.includes("room does not exist"))
+      ? isError
+      : null;
 
   const handleChangeJoin = (e) => {
     const { name } = e.target;
@@ -23,10 +27,8 @@ const JoinRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
 
   const handleJoin = (e) => {
     e.preventDefault();
-    router.push({
-      pathname: "/room",
-      query: join,
-    });
+    localStorage.setItem("user", JSON.stringify({ ...join, host: false }));
+    router.push("/room");
   };
 
   return (

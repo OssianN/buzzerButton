@@ -1,4 +1,4 @@
-export const colorMainHeading = (word) => {
+export const colorText = (word) => {
   const colors = {
     0: "#f3ff0b",
     1: "#ffbb16",

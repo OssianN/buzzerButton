@@ -1,11 +1,20 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setUsersList } from "../redux/userSlice";
 import styles from "./vipRoom.module.scss";
 
 const Vip = ({ handleResetBuzz }) => {
+  const dispatch = useDispatch();
   const { usersList, user } = useSelector((state) => state.userSlice);
   const buzzed = usersList.filter((user) => user.buzzed);
   const notBuzzed = usersList.filter((user) => !user.buzzed);
+
+  useEffect(() => {
+    const localList = JSON.parse(localStorage.getItem("usersList"));
+    if (localList) {
+      dispatch(setUsersList(localList));
+    }
+  }, []);
 
   return (
     <div className={styles.hostContainer}>
