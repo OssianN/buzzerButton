@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUsersList } from "../redux/userSlice";
+import InViewport from "./InViewport";
 import styles from "./vipRoom.module.scss";
 
 const Vip = ({ handleResetBuzz }) => {
@@ -8,6 +9,8 @@ const Vip = ({ handleResetBuzz }) => {
   const { usersList, user } = useSelector((state) => state.userSlice);
   const buzzed = usersList.filter((user) => user.buzzed);
   const notBuzzed = usersList.filter((user) => !user.buzzed);
+
+  const viewPortRef = useRef(null);
 
   useEffect(() => {
     const localList = JSON.parse(localStorage.getItem("usersList"));
@@ -20,26 +23,36 @@ const Vip = ({ handleResetBuzz }) => {
     <div className={styles.hostContainer}>
       <h1 className={styles.roomHeading}>{user.room}</h1>
       <div className={styles.listContainer}>
-        <ol className={styles.buzzedList}>
-          {usersList.length > 0 ? (
-            buzzed
-              .sort((a, b) => a.buzzed - b.buzzed)
-              .map((user, i) => {
-                return (
-                  <li className={styles.usersListItem} key={i}>
-                    <span className={styles.userOrder}>{`${i + 1}. `}</span>
-                    <h2 className={styles.userName}>{user.name}</h2>
-                    <span></span>
-                  </li>
-                );
-              })
-          ) : (
-            <p className={styles.waitingText}>waiting for players to join...</p>
-          )}
+        <div className={styles.buzzedListContainer} ref={viewPortRef}>
+          <ol className={styles.buzzedList}>
+            {usersList.length > 0 ? (
+              buzzed
+                .sort((a, b) => a.buzzed - b.buzzed)
+                .map((user, i) => {
+                  return (
+                    <InViewport
+                      root={viewPortRef.current}
+                      rootMargin="-20px"
+                      key={i}
+                    >
+                      <li className={styles.usersListItem}>
+                        <span className={styles.userOrder}>{`${i + 1}. `}</span>
+                        <h2 className={styles.userName}>{user.name}</h2>
+                        <span></span>
+                      </li>
+                    </InViewport>
+                  );
+                })
+            ) : (
+              <p className={styles.waitingText}>
+                waiting for players to join...
+              </p>
+            )}
+          </ol>
           <button className={styles.resetButton} onClick={handleResetBuzz}>
             RESET
           </button>
-        </ol>
+        </div>
 
         <ul className={styles.notBuzzedList}>
           {notBuzzed.map((user, i) => {

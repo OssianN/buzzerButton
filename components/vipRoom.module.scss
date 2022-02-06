@@ -9,7 +9,7 @@
 
 @mixin user-list-mobile-size() {
   width: 90%;
-  height: 45%;
+  height: 48%;
 }
 
 @mixin user-list($light, $background) {
@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 1rem;
+  margin: 1rem;
   padding: 2rem;
   border-radius: g.$defaultBorderRadius;
   box-shadow: g.$defaultBoxShadow;
@@ -29,7 +29,7 @@
 
 .hostContainer {
   width: 100%;
-  height: calc(100% - 10rem);
+  height: calc(100% - 9rem);
 }
 
 .roomHeading {
@@ -48,14 +48,24 @@
   height: 100%;
 }
 
-.buzzedList {
+.buzzedListContainer {
   @include user-list-mobile-size();
   @include user-list(g.$lightBlue, g.$blue);
+  padding: 0;
+}
+
+.buzzedList {
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  padding-bottom: 6rem;
+  overflow-y: scroll;
 }
 
 .notBuzzedList {
   @include user-list-mobile-size();
   @include user-list(g.$lightOrange, g.$orange);
+  overflow-y: scroll;
 }
 
 .usersListItem {
@@ -67,7 +77,8 @@
 
 .userName {
   font-size: 1.7rem;
-  margin: 1rem;
+  font-weight: 300;
+  margin: 0.7rem;
 }
 
 .userOrder {
@@ -81,12 +92,10 @@
 
 .resetButton {
   @include g.default-button(g.$green, white);
-  position: absolute;
-  bottom: 30px;
 }
 
 @media screen and (min-width: 600px) {
-  .buzzedList {
+  .buzzedListContainer {
     @include user-list-desktop-size();
   }
 
@@ -99,10 +108,6 @@
   }
 
   .userName {
-    font-size: 3rem;
-  }
-
-  .userOrder {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
