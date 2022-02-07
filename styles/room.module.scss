@@ -24,8 +24,10 @@
 }
 
 .roomHeading {
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 900;
+  word-break: break-word;
+  text-align: center;
   color: g.$lightBlue;
   margin-top: 3rem;
 }
@@ -75,6 +77,12 @@
 @media screen and (min-height: 900px) {
   .roomHeading {
     margin-top: 7rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .roomHeading {
+    font-size: 5rem;
   }
 }
 

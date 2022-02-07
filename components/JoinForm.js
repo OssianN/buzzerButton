@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setError } from "../redux/userSlice";
 import styles from "../styles/landingPage.module.scss";
