@@ -18,6 +18,7 @@ import styles from "../styles/room.module.scss";
 const Room = () => {
   const router = useRouter();
   const socket = io("https://buzzer-button.herokuapp.com");
+  // const socket = io("http://localhost:4000");
   const dispatch = useDispatch();
 
   const { user, isLoading, isError } = useSelector((state) => state.userSlice);
@@ -48,7 +49,12 @@ const Room = () => {
   useEffect(() => {
     dispatch(setLoadingTrue());
     const { name, room, host } = JSON.parse(localStorage.getItem("user"));
+    const localUsersList = JSON.parse(localStorage.getItem("usersList")) || [];
     const user = { name, room, host };
+
+    if (room !== localUsersList[0]?.room) {
+      localStorage.setItem("usersList", JSON.stringify([]));
+    }
 
     if (!host) {
       joinRoom(user);
@@ -56,16 +62,10 @@ const Room = () => {
     }
 
     joinRoomAsHost(user);
-
-    return () => {
-      socket.disconnect();
-      socket.off();
-    };
   }, []);
 
   useEffect(() => {
     socket.on("host list", (list) => {
-      console.log(list);
       dispatch(setUsersList(list));
     });
 
