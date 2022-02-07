@@ -42,7 +42,7 @@ const JoinRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
         name="room"
         id="room"
         onFocus={() => handleInputFocus(roomLabel)}
-        onBlur={() => handleInputBlur(roomLabel)}
+        onBlur={() => !join.room && handleInputBlur(roomLabel)}
         onChange={handleChangeJoin}
         value={join.room}
       />
@@ -54,7 +54,7 @@ const JoinRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
         name="name"
         id="name"
         onFocus={() => handleInputFocus(nameLabel)}
-        onBlur={() => handleInputBlur(nameLabel)}
+        onBlur={() => !join.name && handleInputBlur(nameLabel)}
         onChange={handleChangeJoin}
         value={join.name}
       />

@@ -38,7 +38,7 @@ const CreateRoomForm = ({ router, handleInputFocus, handleInputBlur }) => {
         name="room"
         id="room"
         onFocus={() => handleInputFocus(roomLabel)}
-        onBlur={() => handleInputBlur(roomLabel)}
+        onBlur={() => !create.room && handleInputBlur(roomLabel)}
         onChange={handleChangeCreate}
         value={create.room}
       />
