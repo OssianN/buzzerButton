@@ -1,5 +1,5 @@
-@use "./variables.scss" as *;
-@forward "./variables.scss";
+@use './variables.scss' as *;
+@forward './variables.scss';
 
 @mixin default-button($background, $color) {
   position: absolute;
@@ -16,7 +16,4 @@
   cursor: pointer;
   text-shadow: #00000045 0 1px 3px;
   transition: transform 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
 }
